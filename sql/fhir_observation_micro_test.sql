@@ -56,7 +56,7 @@ WITH distinct_org AS (
         , MAX(valueCodeableConcept) AS valueCodeableConcept
 
         -- only include organism list if specimen had at least one organism growth
-        , CASE WHEN MAX(valueString) IS NULL THEN 
+        , CASE WHEN MAX(valueString) IS NOT NULL THEN
             json_agg(
                 jsonb_build_object('reference', 
                     'Observation/' || uuid_generate_v5(ns_observation_micro_org.uuid, mi_ORGANISM)
