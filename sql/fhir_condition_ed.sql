@@ -53,8 +53,8 @@ SELECT
         , 'code', jsonb_build_object(
             'coding', jsonb_build_array(jsonb_build_object(
                 'system', diag_ICD_SYSTEM
-                , 'code', diag_ICD_CODE
-                , 'display', diag_ICD_TITLE
+                , 'code', TRIM(diag_ICD_CODE)
+                , 'display', TRIM(diag_ICD_TITLE)
             ))
         )
         , 'subject', jsonb_build_object('reference', 'Patient/' || uuid_SUBJECT_ID)
