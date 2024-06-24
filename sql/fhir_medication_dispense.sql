@@ -69,8 +69,8 @@ WITH distinct_prescriptions AS (
             ON ph.duration_interval = medu.mimic_unit 
     
     -- only create medication dispense if medication is specified
-    WHERE 
-        ph.medication IS NOT NULL
+    WHERE
+        NULLIF(TRIM(ph.medication),'')  IS NOT NULL
 ) 
 
 INSERT INTO mimic_fhir.medication_dispense
